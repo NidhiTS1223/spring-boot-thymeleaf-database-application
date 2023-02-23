@@ -26,6 +26,7 @@ public class EmployeeController {
 	
 	@GetMapping("/addEmployeeForm")
 	public ModelAndView addEmployeeForm() {
+		
 		ModelAndView mav = new ModelAndView("add-employee-form");
 		Employee newEmployee = new Employee();
 		mav.addObject("employee", newEmployee);
@@ -34,12 +35,14 @@ public class EmployeeController {
 	
 	@PostMapping("/saveEmployee")
 	public String saveEmployee(@ModelAttribute Employee employee) {
+		
 		eRepo.save(employee);
 		return "redirect:/list";
 	}
 	
 	@GetMapping("/showUpdateForm")
 	public ModelAndView showUpdateForm(@RequestParam Long employeeId) {
+		
 		ModelAndView mav = new ModelAndView("add-employee-form");
 		Employee employee = eRepo.findById(employeeId).get();
 		mav.addObject("employee", employee);
